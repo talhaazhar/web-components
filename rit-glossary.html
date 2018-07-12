@@ -1,0 +1,30 @@
+<template id = "kaka">
+        <style>
+            
+        </style>
+        <p>
+            <span style="font-weight: bold;">Character Artist: </span>
+            "Responsible for creating humanoids, aliens, or other characters in teh game. "
+            <span style="font-style: italic;">(W1, Visual Art)</span>
+        </p>
+    
+    </template>
+    
+    <script>
+        
+            console.log("here");
+            var theHTML = document.currentScript.ownerDocument;
+            var tmp = theHTML.querySelector('#kaka');
+            var Element = Object.create(HTMLElement.prototype);
+            var shadowRoot;
+    
+    
+            Element.createdCallback = function(){
+                shadowRoot = this.createShadowRoot();
+                var clone = document.importNode(tmp.content, true);
+                shadowRoot.appendChild(clone);
+            };
+    
+            document.registerElement('rit-glossary', {prototype: Element});
+    
+    </script>
