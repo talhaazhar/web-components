@@ -1,30 +1,42 @@
-<template id = "kaka">
-        <style>
-            
-        </style>
-        <p>
-            <span style="font-weight: bold;">Character Artist: </span>
-            "Responsible for creating humanoids, aliens, or other characters in teh game. "
-            <span style="font-style: italic;">(W1, Visual Art)</span>
-        </p>
+<template id = "rit-glossary-template">
+    <p>
+        <span style="font-weight: bold;" class = "word"></span>: 
+        <span class = "def"></span>
+        <span style="font-style: italic;" class = "chp"></span>
+    </p>
+</template>
+
+<script type = "text/javascript">
+(function(){
+    var thisHTML = document.currentScript.ownerDocument;                    //loading this file HTML
+    var template = thisHTML.querySelector("#rit-glossary-template");        //grabbing template above
+    var Element = Object.create(HTMLElement.prototype);                     //Shell HTML to create
+    var shadowRoot;
+
+    Element.createdCallback = function(){
+        shadowRoot = this.createShadowRoot();
+        var clone = document.importNode(template.content, true);
+        shadowRoot.appendChild(clone);
+        console.log(clone);
+
+        this.$word = shadowRoot.querySelector('.word');
+        this.$def = shadowRoot.querySelector('.def');
+        this.$chp = shadowRoot.querySelector('.chp');
+
+        this.addValues();
+    };
+
+
+    Element.addValues = function(){
+        this.$word.innerHTML = this.getAttribute("word");
+        this.$def.innerHTML = this.getAttribute("definition");
+        this.$chp.innerHTML = this.getAttribute("chapter");
+    }
     
-    </template>
-    
-    <script>
-        
-            console.log("here");
-            var theHTML = document.currentScript.ownerDocument;
-            var tmp = theHTML.querySelector('#kaka');
-            var Element = Object.create(HTMLElement.prototype);
-            var shadowRoot;
-    
-    
-            Element.createdCallback = function(){
-                shadowRoot = this.createShadowRoot();
-                var clone = document.importNode(tmp.content, true);
-                shadowRoot.appendChild(clone);
-            };
-    
-            document.registerElement('rit-glossary', {prototype: Element});
-    
-    </script>
+
+    document.registerElement('rit-glossary', {prototype: Element});
+})()
+
+</script>
+
+
