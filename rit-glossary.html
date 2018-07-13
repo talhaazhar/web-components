@@ -10,19 +10,20 @@
 (function(){
     var thisHTML = document.currentScript.ownerDocument;                    //loading this file HTML
     var template = thisHTML.querySelector("#rit-glossary-template");        //grabbing template above
-    var Element = Object.create(HTMLElement.prototype);                     //Shell HTML to create
+    var Element = Object.create(HTMLElement.prototype);                     //creating a prototype/Shell
     var shadowRoot;
 
     Element.createdCallback = function(){
+        //contents for Element
         shadowRoot = this.createShadowRoot();
         var clone = document.importNode(template.content, true);
-        shadowRoot.appendChild(clone);
-        console.log(clone);
+        shadowRoot.appendChild(clone);      //template above to shadowRoot
 
+        //elements in the shadowRoot
         this.$word = shadowRoot.querySelector('.word');
         this.$def = shadowRoot.querySelector('.def');
         this.$chp = shadowRoot.querySelector('.chp');
-
+        
         this.addValues();
     };
 
