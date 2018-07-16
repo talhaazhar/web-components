@@ -2,14 +2,16 @@
     <h1>Rochester Glossary</h1>
     <hr> 
     <div id = "collection">
-    <rit-glossary word = "Character Artist" 
+    <rit-glossary1 word = "Character Artist" 
         definition = "Responsible for creating humanoids, aliens, or other characters in the game."
         chapter = "(W1, Visual Art)"></rit-glossary>
         
-    <rit-glossary word = "Artists" 
+    <rit-glossary1 word = "Artists" 
         definition = "In the games industry, &quot;artists&quot; is a broad term that encompasses a lot."
         chapter = "(W1, Visual Art)"></rit-glossary>
     </div>
+
+    <div id = "dictionary"></div>
 </template>
 
 <script type = "text/javascript">
@@ -32,10 +34,22 @@
         shadowRoot = this.createShadowRoot();
         var clone = document.importNode(template.content, true);
         shadowRoot.appendChild(clone);      //template above to shadowRoot
-        var defs = shadowRoot.getElementById("collection").querySelectorAll("rit-glossary");
+        var defs = shadowRoot.getElementById("collection").querySelectorAll("rit-glossary1");
         defs = Array.from(defs);
-        
-        console.log(alphabet);
+        var collection = shadowRoot.getElementById("dictionary");
+        defs.sort(compare);
+
+
+        for(var i = 0; i < defs.length; i++ ){
+            console.log(defs[i]);
+            var wrd = defs[i].getAttribute("word");
+            var def = defs[i].getAttribute("definition");
+            var chp = defs[i].getAttribute("chapter");
+
+            var ele = "<rit-glossary word = \"" + wrd + "\" definition = \""
+             + def + "\" chapter = \"" + chp + "\" ></rit-glossary>";
+            collection.innerHTML += ele;
+        }
     };    
 
     document.registerElement('glossary-container', {prototype: Element});
