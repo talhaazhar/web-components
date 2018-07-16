@@ -1,6 +1,8 @@
 <template id = "glossary-container">
-    <h1>Rochester Glossary</h1>
+    <h1>Game Dev Glossary</h1>
     <hr> 
+    <glossary-search></glossary-search>
+
     <div id = "collection">
     <rit-glossary1 word = "Character Artist" 
         definition = "Responsible for creating humanoids, aliens, or other characters in the game."
@@ -9,52 +11,51 @@
     <rit-glossary1 word = "Artists" 
         definition = "In the games industry, &quot;artists&quot; is a broad term that encompasses a lot."
         chapter = "(W1, Visual Art)"></rit-glossary>
+
+    <rit-glossary1 word = "Creative Director" 
+        definition = "Concerned with the over arching design and process of design across all projects. "
+        chapter = "(W1, Overview)"></rit-glossary>
+    
+    <rit-glossary1 word = "Environment Artists" 
+        definition = "Responsible for creating the enviornemnt of the game (ex trees, rocks, dirt walls, floors, etc.)."
+        chapter = "(W1, Visual Art)"></rit-glossary>
+
+    <rit-glossary1 word = "Lead Programmer" 
+        definition = "Work with other leads to get a high level view of the project and identify obstacles."
+        chapter = "(W1, Visual Art)"></rit-glossary>
+
+    <rit-glossary1 word = "Technical Artist" 
+        definition = "The main function of this role is art, however they are responsbile for programming as well."
+        chapter = "(W1, Visual Art)"></rit-glossary>
+
+    <rit-glossary1 word = "Engine Programmer" 
+        definition = "Creates the set of tools other programmers use to make the game."
+        chapter = "(W1, Programming)"></rit-glossary>
+
+    <rit-glossary1 word = "Database Programmer" 
+        definition = "Keep player data together for large online games."
+        chapter = "(W1, Programming)"></rit-glossary>
+
+
+    <rit-glossary1 word = "Creative Director" 
+        definition = "Concerned with the over arching design and process of design across all projects."
+        chapter = "(W1, Overview)"></rit-glossary>
+
+    <rit-glossary1 word = "Door Problem" 
+        definition = "Think of game design as answering the simplest question. Is there a door in the game? 
+        And, how does that door work? There are so many different ways that a door can work."
+        chapter = "(W1, Overview)"></rit-glossary>
+    
+    <rit-glossary1 word = "Concept Artist" 
+        definition = "Responsible for seting the look, feel, tone and overall visual look and style of the entire game."
+        chapter = "(W1, Visual Art)"></rit-glossary>
     </div>
 
     <div id = "dictionary"></div>
 </template>
 
-<script type = "text/javascript">
-(function(){
-    var thisHTML = document.currentScript.ownerDocument;                    //loading this file HTML
-    var template = thisHTML.querySelector("#glossary-container");        //grabbing template above
-    var Element = Object.create(HTMLElement.prototype);                     //creating a prototype/Shell
-    var shadowRoot;
-    var alphabet = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split("");
 
 
-
-    function compare(a, b){
-        return(a.getAttribute("word").localeCompare(b.getAttribute("word")));
-    }
-
-
-    Element.createdCallback = function(){
-        //contents for Element
-        shadowRoot = this.createShadowRoot();
-        var clone = document.importNode(template.content, true);
-        shadowRoot.appendChild(clone);      //template above to shadowRoot
-        var defs = shadowRoot.getElementById("collection").querySelectorAll("rit-glossary1");
-        defs = Array.from(defs);
-        var collection = shadowRoot.getElementById("dictionary");
-        defs.sort(compare);
-
-
-        for(var i = 0; i < defs.length; i++ ){
-            console.log(defs[i]);
-            var wrd = defs[i].getAttribute("word");
-            var def = defs[i].getAttribute("definition");
-            var chp = defs[i].getAttribute("chapter");
-
-            var ele = "<rit-glossary word = \"" + wrd + "\" definition = \""
-             + def + "\" chapter = \"" + chp + "\" ></rit-glossary>";
-            collection.innerHTML += ele;
-        }
-    };    
-
-    document.registerElement('glossary-container', {prototype: Element});
-})()
-
-</script>
+<script type = "text/javascript" src="glossary-handle.js"></script>
 
 
