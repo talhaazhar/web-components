@@ -1,0 +1,46 @@
+<template id = "glossary-container">
+    <h1>Rochester Glossary</h1>
+    <hr> 
+    <div id = "collection">
+    <rit-glossary word = "Character Artist" 
+        definition = "Responsible for creating humanoids, aliens, or other characters in the game."
+        chapter = "(W1, Visual Art)"></rit-glossary>
+        
+    <rit-glossary word = "Artists" 
+        definition = "In the games industry, &quot;artists&quot; is a broad term that encompasses a lot."
+        chapter = "(W1, Visual Art)"></rit-glossary>
+    </div>
+</template>
+
+<script type = "text/javascript">
+(function(){
+    var thisHTML = document.currentScript.ownerDocument;                    //loading this file HTML
+    var template = thisHTML.querySelector("#glossary-container");        //grabbing template above
+    var Element = Object.create(HTMLElement.prototype);                     //creating a prototype/Shell
+    var shadowRoot;
+    var alphabet = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split("");
+
+
+
+    function compare(a, b){
+        return(a.getAttribute("word").localeCompare(b.getAttribute("word")));
+    }
+
+
+    Element.createdCallback = function(){
+        //contents for Element
+        shadowRoot = this.createShadowRoot();
+        var clone = document.importNode(template.content, true);
+        shadowRoot.appendChild(clone);      //template above to shadowRoot
+        var defs = shadowRoot.getElementById("collection").querySelectorAll("rit-glossary");
+        defs = Array.from(defs);
+        
+        console.log(alphabet);
+    };    
+
+    document.registerElement('glossary-container', {prototype: Element});
+})()
+
+</script>
+
+
