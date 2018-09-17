@@ -7,7 +7,7 @@ The main component created is the __glossary-container__. The **glossary-contain
   **rit-glossary1** and **glossary-search**
   
 ### Usage
-Web Components make life a lot easier. For example, the code below represents the efforts required to create a glossary entry with a web-component:
+Web Components make life a lot easier. For example, the code below represents the efforts required to create a glossary entry without a web-component:
 
 ``` html
 <div class="term w1">
