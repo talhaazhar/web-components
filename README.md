@@ -4,6 +4,6 @@
 
 <p>The main component created is the **<glossary-container>**. The **<glossary-container>** itself uses two components, **<rit-glossary1>** and **<glossary-search>**</p>
 
-'''html
+``` html
 <div></div>
-'''
+```
